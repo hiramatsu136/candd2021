@@ -21,37 +21,36 @@
     生きているセルに隣接する生きたセルが4つ以上の場合、過密で死滅する。   
 
 ## 前提条件
-ブラウザはGoogleを使用しているため、その他ブラウザについては動作保証しない。<br>
+ブラウザはGoogle Chromeを使用しているため、その他ブラウザについては動作保証しない。<br>
 実行前に[開発環境インストール手順](#開発環境インストール手順)のNode.js(npm)のインストールを実施しておくこと。
 
 ## 実行方法・遊び方
-- コマンドプロンプトを起動する。
-- チェックアウトしたソースのwatanabe/xxx配下に移動する。
+1. コマンドプロンプトを起動する。
+1. チェックアウトしたソースのwatanabe/lifegame配下に移動する。
 
     `cd (チェックアウトしたソースの場所)/watanabe/xxx`
 
-- 以下コマンドを実行し、プロジェクトのセットアップを行う。
+1. 以下コマンドを実行し、プロジェクトのセットアップを行う。
 
     `npm install`
 
-- 以下コマンドを実行し、コンパイル、ローカル起動する。
+1. 以下コマンドを実行し、コンパイル、ローカル起動する。
 
     `npm run serve`
 
-- ブラウザを起動し、下記にアクセスする。<br>
+1. ブラウザを起動し、下記にアクセスする。<br>
 　http://localhost:8080
-- 初期配置を設定する。<br>
+1. 初期配置を設定する。<br>
 　デフォルト値を使用する場合はとばして次の手順へ。
-- スタートボタンを押すとゲームスタート、ストップボタンを押すと停止する。
-- クリアボタンを押すと盤面がクリアされ、0世代目にリセットされる。
+1. スタートボタンを押すとゲームスタート、ストップボタンを押すと停止する。
+1. クリアボタンを押すと盤面がクリアされ、0世代目にリセットされる。
 
 ## 開発環境
 - OS：Windows10
 - 言語：javascript
 - フレームワーク：Vue.js
     - コマンドラインインタフェース：vue-cli 4.3.1
-    - UIライブラリー：Vuetify
-    - Vue.js 公式ルータ：Vue Router
+    - vue-cli プラグイン（UIライブラリー）：Vuetify
 - ツール：Visual Studio Code
     - Visual Studio Code プラグイン：Vetur, ESLint, prettier
 
@@ -85,20 +84,16 @@
     ```
     vue create プロジェクト名
 
+    roster：babel、router、eslintをインストールする
     default：babel、eslintをインストールする
     Manually select features：導入するライブラリを選定してインストールする
     下記参考
     https://qiita.com/YMori0811/items/2b48d05a08b743bd70c9
     ```
-1. Vue Routerのインストール
-    ```
-    vue add router
-
-    下記参考
-    https://router.vuejs.org/ja/installation.html
-    ```
 1. Vuetifyのインストール
     ```
+    プロジェクトのフォルダに移動し、以下コマンド実行
+
     vue add vuetify
 
     下記参考
