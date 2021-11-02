@@ -64,6 +64,14 @@ export default {
       defult: new Array(CellConst.maxLength),
       required: true,
     },
+    deepCopy: {
+      type: Function,
+      required: true,
+    },
+    cellColler: {
+      type: Function,
+      required: true,
+    },
   },
   data: () => ({
     cells: null,
@@ -82,23 +90,6 @@ export default {
     setCell: function(x, y, val, event) {
       this.cells[x][y] = val;
       event.target.className = this.cellColler(val);
-    },
-    cellColler: function(cell) {
-      let coller = "white";
-      if (cell == this.live) {
-        coller = "black";
-      }
-      return coller;
-    },
-    deepCopy: function(array) {
-      let copy = new Array(array.length);
-      for (let i = 0; i < array.length; i++) {
-        copy[i] = new Array(array[i].length);
-        for (let j = 0; j < array[i].length; j++) {
-          copy[i][j] = array[i][j];
-        }
-      }
-      return copy;
     },
     ok: function() {
       this.$emit("ok", this.cells);

@@ -40,6 +40,8 @@
         <SettingDialog
           v-bind:defaultCells="deepCopy(cells)"
           v-bind:openFlg="dialog"
+          :deepCopy="deepCopy"
+          :cellColler="cellColler"
           @ok="
             cells = $event;
             dialog = false;
