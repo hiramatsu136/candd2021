@@ -28,7 +28,7 @@
 1. コマンドプロンプトを起動する。
 1. チェックアウトしたソースのwatanabe/lifegame配下に移動する。
 
-    `cd (チェックアウトしたソースの場所)/watanabe/xxx`
+    `cd (チェックアウトしたソースの場所)/watanabe/lifegame`
 
 1. 以下コマンドを実行し、プロジェクトのセットアップを行う。
 
@@ -87,17 +87,15 @@
     roster：babel、router、eslintをインストールする
     default：babel、eslintをインストールする
     Manually select features：導入するライブラリを選定してインストールする
-    下記参考
-    https://qiita.com/YMori0811/items/2b48d05a08b743bd70c9
     ```
+    下記参考<br>
+    https://qiita.com/YMori0811/items/2b48d05a08b743bd70c9
+
 1. Vuetifyのインストール
     ```
     プロジェクトのフォルダに移動し、以下コマンド実行
 
     vue add vuetify
-
-    下記参考
-    https://vuetifyjs.com/ja/getting-started/quick-start/
     ```
-
-   
+    下記参考<br>
+    https://vuetifyjs.com/ja/getting-started/quick-start/
