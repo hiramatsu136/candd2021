@@ -67,13 +67,13 @@
         npmのバージョン確認コマンド
         npm --version
         ```
-1. vue-cliのインストール<br>※以降は初めてVue.jsをインストールしてプロジェクト作成する場合の手順。参考用に記載。
+1. vue-cliのインストール　※以降は初めてVue.jsをインストールしてプロジェクト作成する場合の手順。参考用に記載。
     1. コマンドプロンプトで下記コマンドを実行し、インストールする。
         ```
         npm install -g @vue/cli
 
         デフォルトでは最新版がインストールされる。
-        バージョン指定してインストールすることも可能（参考まで）
+        バージョン指定してインストールすることも可能（参考まで）。
         npm install -g @vue/cli4.3.1
         ```
     1. バージョンを確認する。
@@ -93,9 +93,30 @@
 
 1. Vuetifyのインストール
     ```
-    プロジェクトのフォルダに移動し、以下コマンド実行
+    プロジェクトのフォルダに移動し、以下コマンド実行。
 
     vue add vuetify
     ```
     下記参考<br>
     https://vuetifyjs.com/ja/getting-started/quick-start/
+
+## unit test
+1. テストツール
+    - Vue Test Utils
+    - Jest
+
+1. テストの実行方法
+
+    watanabe/lifegameに移動し、以下コマンドを実行する。
+
+    `npm test`
+
+1. テストツールのインストール（参考）
+    ```
+    npm install --save-dev vue-jest
+    npm install --save-dev babel-jest
+    npm install --save-dev babel-core@bridge
+
+    インストール後、package.jsonにscripts.testとjestの設定を追加する。
+    また、babel.config.jsにenv.testの設定を追加する。
+    ```
