@@ -76,19 +76,19 @@ export default {
     SettingDialog,
   },
   data: () => ({
-    cells: JSON.parse(JSON.stringify(CellConst.initCells)),
-    death: CellConst.death,
-    live: CellConst.live,
-    maxLength: CellConst.maxLength,
-    stopFlg: true,
-    generation: 0,
-    nextCells: JSON.parse(JSON.stringify(CellConst.initCells)),
-    timerId: 0,
-    dialog: false,
+    cells: JSON.parse(JSON.stringify(CellConst.initCells)),    // セルのデータ
+    death: CellConst.death,   // 死滅：0
+    live: CellConst.live,   // 生存：1
+    maxLength: CellConst.maxLength,   // セル配列の最大長
+    stopFlg: true,   // ストップしているかのフラグ
+    generation: 0,   // 世代数
+    nextCells: JSON.parse(JSON.stringify(CellConst.initCells)),   // 次世代仮置き用
+    timerId: 0,   // タイマーID
+    dialog: false,   // ダイアログ表示フラグ
   }),
   methods: {
     deepCopy: function(array) {
-      // 二次元配列コピー
+      // 引数の二次元配列の値をディープコピーする
       let copy = new Array(array.length);
       for (let i = 0; i < array.length; i++) {
         copy[i] = new Array(array[i].length);
@@ -96,9 +96,11 @@ export default {
           copy[i][j] = array[i][j];
         }
       }
+      // コピーした二次元配列を返却
       return copy;
     },
     cellColler: function(cell) {
+      // 値を判定してセルのクラス名を返す
       let coller = "white";
       if (cell == this.live) {
         coller = "black";
@@ -106,6 +108,7 @@ export default {
       return coller;
     },
     judgeCell: function(CellX, CellY) {
+      // セルの生死判定を行う
       // 引数は判定対象のセルのインデックス
       let result = 0;
       // 座標
@@ -127,7 +130,7 @@ export default {
         }
       }
 
-      /* 対象セルの生死、周囲の生存セル数から次世代判定 */
+      // 対象セルの生死、周囲の生存セル数から次世代判定
       if (this.cells[CellX][CellY] == this.death) {
         // 自分が死んでる場合
         if (count == 3) {

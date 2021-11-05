@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <!-- 画面上部のバー -->
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
@@ -35,6 +36,7 @@
       />
     </v-app-bar>
 
+    <!-- 画面メイン部分 -->
     <v-main>
       <router-view />
     </v-main>

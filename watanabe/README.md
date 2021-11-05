@@ -120,3 +120,28 @@
     インストール後、package.jsonにscripts.testとjestの設定を追加する。
     また、babel.config.jsにenv.testの設定を追加する。
     ```
+
+## ソース構成
+
+    lifegame                                        
+    ├─ __tests__                                    # テストコード 
+    │   
+    ├─ public                                       # 静的ファイル(favicon.icoなど)
+    │   
+    ├─ src                                          # ソース
+    │   ├─ assets                                   # 静的ファイル(ロゴなど)
+    │   ├─ components                               # コンポーネント
+    │   ├─ const                                    # 定数
+    │   ├─ plugins                                  # vueのプラグイン
+    │   ├─ router                                   # vue-routerのpath設定はここで行う
+    │   ├─ views                                    # viewファイル（router-viewとなるもの）
+    │   ├─ App.js                                   # 
+    │   └─ main.js                                  # 
+    │   
+    ├─ .gitignore                                   # 
+    ├─ babel.config.js                              # babelの設定
+    ├─ jest.setup.js                                # jestがテスト実行時に読み込むファイル
+    ├─ README.md                                    # 
+    ├─ package-lock.json                            # 
+    ├─ package.json                                 # パッケージ／モジュールの管理ファイル
+    └─ vue.config.js                                # vueの設定
