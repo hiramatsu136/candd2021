@@ -43,18 +43,18 @@ csvファイルは名前ごとに作成されます。また、年月ごとに�
         `go version`
 
 - プロジェクト作成
-    1. プロジェクトを作成するディレクトリへ移動<br>
+    1. プロジェクト作成予定のディレクトリへ移動する。<br>
         `cd (任意のディレクトリ)`
-    1. プロジェクトを初期化する<br>
+    1. プロジェクトを初期化する。<br>
         `go mod init (任意のモジュール名)`<br>
         ※下記参考
         - [Go Modules - Qiita](https://qiita.com/propella/items/e49bccc88f3cc2407745)
         - [Naming a module](https://golang.org/doc/modules/managing-dependencies#naming_module)
 
 - ビルド
-    1. 作成したプロジェクトの配置ディレクトリへ移動<br>
+    1. 作成したプロジェクトの配置ディレクトリへ移動する。<br>
         `cd (任意のディレクトリ)`
-    1. 実行する想定の環境に合わせて、ビルドコマンドを実行する
+    1. 実行する想定の環境に合わせて、ビルドコマンドを実行する。
         ```
         mac(darwin/amd64)用のバイナリファイル作成
         GOOS=darwin GOARCH=amd64 go build -o (生成ファイル名)
