@@ -88,13 +88,13 @@ func doneCheck(records []string, punchFlag bool) {
 		// 出勤の打刻予定の際に、本日の出勤時刻が既に打刻されている場合
 		if records[punchInColumn] != "" {
 			fmt.Println("---<注意>---")
-			fmt.Println("本日の出勤時刻が既に打刻済みです！(出勤時刻:", records[punchInColumn], ")")
+			fmt.Println("<注意>本日の出勤時刻が既に打刻済みです！(出勤時刻:", records[punchInColumn], ")")
 		}
 	} else {
 		// 退勤の打刻予定の際に、本日の退勤時刻が既に打刻されている場合
 		if records[punchOutColumn] != "" {
 			fmt.Println("---<注意>---")
-			fmt.Println("<注意>本日の退勤時刻が既に打刻済みです！(退勤時刻：", records[punchOutColumn], ")")
+			fmt.Println("<注意>本日の退勤時刻が既に打刻済みです！(退勤時刻:", records[punchOutColumn], ")")
 		}
 
 	}

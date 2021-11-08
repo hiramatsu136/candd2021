@@ -21,7 +21,7 @@ timecard
 timecard
 ├─ main.go                          # メイン処理
 │ 
-├─ go.mod                           # go modules
+├─ go.mod                           # パッケージ/モジュールの管理ファイル
 │ 
 └─ process
     └─ file.go                      # ファイル操作・csvファイル作成
