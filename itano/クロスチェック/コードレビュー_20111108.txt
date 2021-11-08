@@ -1,0 +1,29 @@
+・パッケージの切り分け方がよく分からない（あまり現場ではこの形は見ないと思われる）
+→３つ(file,input,record)あったパッケージを１つ(process)に分けました。
+・csvファイルの読み込み処理がrecord.go内にあるが、その処理は分け方としてはfile.goにあるべきものではないか？
+→csvファイルの読み込み処理を関数化し、file.goに移しました。
+また、ファイルの作成や読み込みに関わってくる"os"パッケージおよび"encoding/csv"パッケージがfile.goにのみ存在することを確認しました。
+
+レビュー時のファイル構成
+timecard
+├─ main.go
+│ 
+├─ go.mod
+│ 
+├─ file
+│   └─ file.go
+├─ input
+│   └─ input.go
+└─ record 
+    └─ record.go
+
+修正後のファイル構成
+timecard
+├─ main.go                          # メイン処理
+│ 
+├─ go.mod                           # go modules
+│ 
+└─ process
+    └─ file.go                      # ファイル操作・csvファイル作成
+    └─ input.go                     # 標準入力関連
+    └─ record.go                    # 打刻データ作成
