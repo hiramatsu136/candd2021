@@ -1,6 +1,5 @@
 package com.sample.sample.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.sample.sample.entity.Member;
@@ -12,37 +11,48 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+/**
+ * member情報 Controller
+ */
 @Controller
 public class MemberController {
-    @Autowired
-    private MemberService memberService;
 
-    @GetMapping(value = "/member/list")
-    public String displayList(Model model) {
-      List<Member> memberlist = memberService.searchAll();
-      System.out.println("--------Member　取得できたか--------");
-      System.out.println(Arrays.toString(memberlist.toArray()));
-      System.out.println(memberlist.size());
-      for (Member member : memberlist) {
-          System.out.println(member.getMail_address());
-          System.out.println(member.getName());
-          System.out.println(member.getCreated_date());
-          System.out.println(member.getCreated_user());
-          System.out.println(member.getUpdated_date());
-          System.out.println(member.getUpdated_user());
-      }
-      System.out.println("-----------------------------------");
-      model.addAttribute("memberlist", memberlist);
-      return "member/list";
-    }
+  /**
+   * member Service
+   */
+  @Autowired
+  private MemberService memberService;
 
-    @GetMapping(value = "/member/add")
-    public String displayAdd(Model model) {
-      return "member/add";
-    }
+  /**
+   * メンバー情報一覧画面表示
+   * @param model Model
+   * @return メンバー情報一覧画面
+   */
+  @GetMapping(value = "/member/list")
+  public String displayList(Model model) {
+    List<Member> memberlist = memberService.searchAll();
+    model.addAttribute("memberlist", memberlist);
+    return "member/list";
+  }
 
-    @GetMapping("/member/{mailAdress}")
-    public String displayView(@PathVariable String mailAdress, Model model) {
-      return "member/view";
-    }
+  /**
+   * 新規登録画面
+   * @param model Model
+   * @return 新規登録画面
+   */
+  @GetMapping(value = "/member/add")
+  public String displayAdd(Model model) {
+    return "member/add";
+  }
+
+  /**
+   * メンバー情報詳細画面表示
+   * @param mailAdress メールアドレス
+   * @param model Model
+   * @return メンバー情報詳細画面(dummy)
+   */
+  @GetMapping("/member/{mailAdress}")
+  public String displayView(@PathVariable String mailAdress, Model model) {
+    return "member/view";
+  }
 }

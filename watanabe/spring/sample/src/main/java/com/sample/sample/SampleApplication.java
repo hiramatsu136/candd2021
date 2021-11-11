@@ -3,6 +3,9 @@ package com.sample.sample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * SampleApplication
+ */
 @SpringBootApplication
 public class SampleApplication {
 
