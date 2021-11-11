@@ -13,7 +13,9 @@
 https://tech-lab.sios.jp/archives/19941<br>
 https://zenn.dev/s_t_pool/articles/486dfaa7c2e5fb7a6a03<br>
 https://qiita.com/tsunemiso/items/32d67fc633cf5448d89a#mybatis-generator<br>
-
+↓　mybatis<br>
+https://medium-company.com/spring-boot-thymeleaf%E3%81%A7%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B/#UserControllerjava<br>
+https://www.bedroomcomputing.com/2020/03/2020-0327-mybatis/<br>
 
 ## バージョン情報
 - java：jdk-⁠11.0.11.9
@@ -46,6 +48,7 @@ https://rightcode.co.jp/blog/become-engineer/java-install
 Visual Studio Codeに下記拡張機能をインストールする。
 - Java Extension Pack
 - Spring Boot Extension Pack
+- Lombok Annotations Support for VS Code（Lombokを使用する場合追加する）
 
 
 ## Visual Studio Codeの設定
@@ -76,14 +79,80 @@ Mac：Command + Shift + P<br>
 Gradleの場合は「Spring Initializr: Generate a Maven Project」を選択する。
 1. Spring Bootのバージョンを選択する。
 1. project languageを聞かれたら「Java」を選択する。
-1. パッケージ名を入力し、「Enter」を押す。
-1. プロジェクト名を入力し、「Enter」を押す。
+1. パッケージ名を入力し、Enterを押す。
+1. プロジェクト名を入力し、Enterを押す。
 1. パッケージングタイプを選択する。（今回はJARを選択）
 1. Javaのバージョンを選択する。（今回はJDKのバージョンが11のため11を選択）
-1. 依存関係を追加する。一旦以下を追加。必要に応じて変更する。
+1. 依存関係を追加する。（一旦以下を追加。必要に応じて変更する。）
     - Spring Web
     - Spring Boot DevTools
     - Thymeleaf
-    - Lombok
-    - MyBatis Framework ←DBアクセスのため追加
+    - Lombok　←getter,setterを自動生成するプラグイン
+    - MyBatis Framework
+    - Spring Data JPA
 1. ディレクトリを選択し、「Generate into this folder」を押す。
+
+## 実行方法
+1. Visual Studio Code の左側、SPRING BOOT DASHBOARD　に表示されているプロジェクトのStartボタンを押下し、com.sample.sample.SampleApplicationを選択する。<br>
+または、上部メニューの実行＞デバッグの開始を押下する。
+2. 下記へアクセスする。
+    ```
+    Hello World
+    http://localhost:8080/hello
+    
+    DBアクセスサンプル
+    http://localhost:8080/member/list
+    ```
+
+## MySQL
+無償版「MySQL Community Edition」を使用する。以下インストールなどの手順を記載する。<br>
+### インストール
+1. [公式サイト](https://www.mysql.com/jp/)からインストーラーを入手する。<br>
+サイト上部のダウンロードから「MySQL Community Downloads」へとび、
+MySQL Community Serverをダウンロードする。
+1. インストーラーを実行し、Developer Defaultを選択する。<br>
+1. 「Check Requirements」画面でExecuteボタンを押下し、必要なものをインストールしてからNextボタンを押下する。<br>
+特に記載のないものは画面に従ってインストールを進める。基本はデフォルト値で良い。
+1. 「Type and Networking」画面で初期設定を行う。<br>
+「Development Computer」を選択する。ポートは重複していなければそのまま。
+1. そのまま進めていき、rootユーザーのパスワード設定とユーザー追加を行う。<br>
+今回は以下で作成
+    ```
+    rootユーザーパスワード：mysql_root
+    ユーザー名：mysql_admin
+    パスワード：mysql_admin
+    Role：DB Admin
+    ```
+1. 「Apply Configuration」画面でExecuteボタンを押下し、設定を反映する。
+1. Finishボタン押下後、続けて「MySQL Router」の設定画面となる。そのままNext、Finishボタンを押下する。
+1. 「Samples and Examples」の設定ではrootユーザーのパスワードを入力し、Checkボタンを押下する。<br>
+接続に成功したらNextボタンを押下し、次の画面でExecute、Finishボタンを押下する。
+後は画面に従い、Next、Finishを押下していく。<br>
+
+参考<br>
+https://agency-star.co.jp/column/mysql<br>
+https://qiita.com/ponsuke0531/items/176a158ea4db3714adda<br>
+
+### mySQLドライバー追加
+プロジェクトにドライバーを追加する。
+1. Visual Studio Codeのエクスプローラーにてpom.xml上で右クリックし、「Add Starters...」を選択する。
+1. MySQL Driverを選択し、Enterを押す。pom.xmlに設定が追加されればOK。
+1. application.propertiesにDBの接続設定を追加する。（データベースが作成してあること）
+
+### データベース作成
+当プロジェクトで使用するデータベースなどの作成方法を記載する。
+1. MySQL Workbenchを起動し、「sample」スキーマを作成する。
+1. テーブルを作成する。
+    ```
+    CREATE TABLE IF NOT EXISTS
+    sample.member                                              -- テーブル名
+    (
+        MAIL_ADDRESS varchar(255) NOT NULL PRIMARY KEY  -- メールアドレス：PK
+        ,NAME varchar(255) NOT NULL                     -- 名前
+        ,CREATED_DATE datetime                          -- 登録日時
+        ,CREATED_USER varchar(255)                      -- 登録者
+        ,UPDATED_DATE datetime                          -- 更新日時
+        ,UPDATED_USER varchar(255)                      -- 更新者
+    );
+    ```
+1. 任意のデータを登録する。
