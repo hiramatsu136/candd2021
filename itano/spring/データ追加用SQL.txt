@@ -1,0 +1,28 @@
+・テーブル作成
+作成するテーブルは以下の通り：
+    テーブル名：book_table
+    各カラム詳細：
+        book_id         図書番号（主キー）
+        release_date    発売日
+        title           タイトル(必須)
+        author          著者
+        price           値段
+        stock           在庫数
+SQL：
+    CREATE TABLE book_table (
+    book_id NUMBER(13) PRIMARY KEY,
+    release_date DATE,
+    title varchar2(100) not null,
+    author varchar2(100),
+    price NUMBER(7),
+    stock NUMBER(5)
+    );
+
+・データ追加
+SQL：
+    INSERT INTO book_table (book_id, release_date, title, author, price, stock) 
+    VALUES (0, TO_DATE('2021/11/12'), 'テストタイトル', 'テスト著者', 1000, 5);
+
+・データの確認
+SQL：
+    SELECT * FROM book_table;
