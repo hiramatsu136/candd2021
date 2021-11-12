@@ -1,9 +1,11 @@
 # Spring Boot 勉強用プロジェクト
 
 ## 概要
-### Visual Studio Codeを使ってSpring Bootのプロジェクトを作成する。
+### 学習内容
+Visual Studio Codeを使用しSpring Bootのプロジェクトを作成する。<br>
+また、環境構築、成果物の実行方法を当READMEに記載する。<br>
 ※Visual Studio Codeはインストール済みであることを前提とする。<br>
-目標<br>
+学習目標<br>
 1. JDKインストール
 1. Visual Studio Code拡張機能のインストール
 1. Spring Bootのプロジェクト作成
@@ -16,6 +18,7 @@ https://zenn.dev/s_t_pool/articles/486dfaa7c2e5fb7a6a03<br>
 https://qiita.com/tsunemiso/items/32d67fc633cf5448d89a#mybatis-generator<br>
 https://www.bedroomcomputing.com/2020/03/2020-0327-mybatis/<br>
 https://medium-company.com/spring-boot-thymeleaf%E3%81%A7%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B/#UserControllerjava<br>
+
 
 ## バージョン情報
 - java：jdk-⁠11.0.11.9
