@@ -100,7 +100,7 @@ public class MemberController {
       return "member/add";
     }
     // 一覧画面へ
-    return "redirect:member/list";
+    return "redirect:/member/list";
   }
 
   /**
