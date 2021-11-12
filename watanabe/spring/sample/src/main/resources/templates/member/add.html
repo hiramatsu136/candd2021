@@ -4,8 +4,25 @@
 <head th:replace="common/head :: head_fragment(title = 'メンバー新規登録', scripts = ~{::script}, links = ~{::link})"></head>
 <body>
   <div class="container">
-    <h1>新規登録画面ダミー</h1>
-    <a href="/member/list">一覧に戻る</a>
+    <div th:if="${validationError}" th:each="error : ${validationError}">
+      <label class="text-danger" th:text="${error}"></label>
+    </div>
+    <h1>新規登録画面</h1>
+    <form th:action="@{/member/create}" th:object="${memberForm}" th:method="post">
+      <div class="form-group">
+        <label>メールアドレス：<span class="text-danger">※</span></label>
+        <input type="text" th:field="*{mailAddress}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>名前：<span class="text-danger">※</span></label>
+        <input type="text" th:field="*{name}" class="form-control">
+      </div>
+      <br />
+      <div class="text-center">
+        <a href="/member/list" class="btn btn-secondary">キャンセル</a>
+        <input type="submit" value="　登録　" class="btn btn-primary">
+      </div>
+    </form>
   </div>
 </body>
 </html>
