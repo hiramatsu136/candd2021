@@ -1,0 +1,75 @@
+watanabe
+    ├─lifegame                                      # ライフゲームのプロジェクト
+    ├─README.md                                     # ライフゲームのREADME
+    ├─クロスチェック                                 # クロスチェック時のコメント
+    └─spring                                        # spring学習用　詳細を下記に示す
+
+---------------------------------------------------------
+spring
+│  README.md                                        # spring学習用README
+│
+├─doc                                               # ドキュメント類
+│      .settings.xml                                # 参考用mavenの設定ファイル 
+│      .ディレクトリ構造.txt                         # 当ファイル 
+│      .データ作成.sql                               # データ作成用SQL
+│
+└─sample
+    │  .gitignore
+    │  mvnw
+    │  mvnw.cmd
+    │  pom.xml                                      # 依存関係等の設定 
+    │
+    ├─.mvn                                          # maven関連(自動生成される)
+    │  └─wrapper
+    │          maven-wrapper.jar
+    │          maven-wrapper.properties
+    │          MavenWrapperDownloader.java
+    │
+    ├─src
+    │  ├─main
+    │  │  ├─java
+    │  │  │  └─com
+    │  │  │      └─sample
+    │  │  │          └─sample
+    │  │  │              │  SampleApplication.java   # main
+    │  │  │              │
+    │  │  │              ├─controller                # Controller
+    │  │  │              │      HelloController.java
+    │  │  │              │      MemberController.java
+    │  │  │              │
+    │  │  │              ├─entity                    # entity　テーブルのカラム名に合わせること
+    │  │  │              │      Member.java
+    │  │  │              │
+    │  │  │              ├─form                      # Request/Response用dto
+    │  │  │              │      memberForm.java
+    │  │  │              │
+    │  │  │              ├─mapper                    # Mapper DB操作し、データをオブジェクトに紐付ける
+    │  │  │              │      MemberMapper.java
+    │  │  │              │
+    │  │  │              └─service                   # Service
+    │  │  │                      MemberService.java
+    │  │  │
+    │  │  └─resources
+    │  │      │  application.properties
+    │  │      │
+    │  │      ├─static
+    │  │      │      index.html
+    │  │      │
+    │  │      └─templates
+    │  │          │  hello.html
+    │  │          │
+    │  │          ├─common
+    │  │          │      head.html
+    │  │          │
+    │  │          └─member
+    │  │                  add.html
+    │  │                  list.html
+    │  │                  view.html
+    │  │
+    │  └─test                                       # unit test（ファイルは省略）
+    │      └─java
+    │          └─com
+    │              └─sample
+    │                  └─sample
+    │
+    └─target                                        # ビルドで作成される（commit対象外）

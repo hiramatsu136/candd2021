@@ -2,28 +2,38 @@
 
 ## 概要
 ### Visual Studio Codeを使ってSpring Bootのプロジェクトを作成する。
-※Visual Studio Codeはインストール済みであることを前提とする。
+※Visual Studio Codeはインストール済みであることを前提とする。<br>
+目標<br>
 1. JDKインストール
 1. Visual Studio Code拡張機能のインストール
 1. Spring Bootのプロジェクト作成
 1. 「Hello World」を表示させる
-1. DBをインストール、MyBatisでDBアクセスを行う
+1. MyBatisを使用し、DB参照、登録・更新を行う
 
 参考<br>
 https://tech-lab.sios.jp/archives/19941<br>
 https://zenn.dev/s_t_pool/articles/486dfaa7c2e5fb7a6a03<br>
 https://qiita.com/tsunemiso/items/32d67fc633cf5448d89a#mybatis-generator<br>
-↓　mybatis<br>
-https://medium-company.com/spring-boot-thymeleaf%E3%81%A7%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B/#UserControllerjava<br>
 https://www.bedroomcomputing.com/2020/03/2020-0327-mybatis/<br>
+https://medium-company.com/spring-boot-thymeleaf%E3%81%A7%E4%B8%80%E8%A6%A7%E7%94%BB%E9%9D%A2%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B/#UserControllerjava<br>
 
 ## バージョン情報
 - java：jdk-⁠11.0.11.9
-- Spring Boot：2.4.6　←選択肢に表示されないため2.4.12で作成
+- Spring Boot：2.4.6　←選択肢に表示されないため2.4.12で作成し、pom.xmlで修正する
 - MyBatis：2.1.4
 
+## 実行方法
+Visual Studio Codeで実行する手順を記載する。
+1. [環境構築](#環境構築)ができていること。
+1. Visual Studio Code の左側、SPRING BOOT DASHBOARD　に表示されているプロジェクトのStartボタンを押下し、com.sample.sample.SampleApplicationを選択する。<br>
+または、上部メニューの実行＞デバッグの開始を押下する。
+2. 下記へアクセスする。
+    ```
+    http://localhost:8080/
+    ```
 
-## JDKインストール
+## 環境構築
+### JDKインストール
 JDKがインストールされていない場合、インストールと環境変数の設定を行う。
 1. Oracleのサイトからインストーラーを入手する。
 [ダウンロードページ](https://www.oracle.com/jp/java/technologies/javase/jdk11-archive-downloads.html)<br>
@@ -44,14 +54,13 @@ JDKがインストールされていない場合、インストールと環境�
 https://rightcode.co.jp/blog/become-engineer/java-install
 
 
-## Visual Studio Code拡張機能のインストール
+### Visual Studio Code拡張機能のインストール
 Visual Studio Codeに下記拡張機能をインストールする。
 - Java Extension Pack
 - Spring Boot Extension Pack
 - Lombok Annotations Support for VS Code（Lombokを使用する場合追加する）
 
-
-## Visual Studio Codeの設定
+### Visual Studio Codeの設定
 1. 「Ctrl + , 」でVisual Studio Codeの設定を開く。
 1. 「java.home」と検索し、「settings.json で編集」をクリックする。
 1. settings.jsonに以下を追加する。
@@ -68,45 +77,9 @@ Visual Studio Codeに下記拡張機能をインストールする。
     ※mavenのプロキシ設定はファイルに記載し、settings.jsonでパスの指定を行う。
     ```
 
-## プロジェクトの作成
-1. コマンドパレットでSpringを検索、「Spring Initializr: Generate a Maven Project」を選択する。<br>
-※コマンドパレット表示方法<br>
-Windows：Ctrl + Shift + P<br>
-Mac：Command + Shift + P<br>
-または上部メニュー「表示」＞「コマンドパレット」<br>
-※ビルドツールについて<br>
-現場で何を使用しているか不明だが、ひとまずMavenを使用する。<br>
-Gradleの場合は「Spring Initializr: Generate a Maven Project」を選択する。
-1. Spring Bootのバージョンを選択する。
-1. project languageを聞かれたら「Java」を選択する。
-1. パッケージ名を入力し、Enterを押す。
-1. プロジェクト名を入力し、Enterを押す。
-1. パッケージングタイプを選択する。（今回はJARを選択）
-1. Javaのバージョンを選択する。（今回はJDKのバージョンが11のため11を選択）
-1. 依存関係を追加する。（一旦以下を追加。必要に応じて変更する。）
-    - Spring Web
-    - Spring Boot DevTools
-    - Thymeleaf
-    - Lombok　←getter,setterを自動生成するプラグイン
-    - MyBatis Framework
-    - Spring Data JPA
-1. ディレクトリを選択し、「Generate into this folder」を押す。
-
-## 実行方法
-1. Visual Studio Code の左側、SPRING BOOT DASHBOARD　に表示されているプロジェクトのStartボタンを押下し、com.sample.sample.SampleApplicationを選択する。<br>
-または、上部メニューの実行＞デバッグの開始を押下する。
-2. 下記へアクセスする。
-    ```
-    Hello World
-    http://localhost:8080/hello
-    
-    DBアクセスサンプル
-    http://localhost:8080/member/list
-    ```
-
-## MySQL
+### MySQL
 無償版「MySQL Community Edition」を使用する。以下インストールなどの手順を記載する。<br>
-### インストール
+#### インストール
 1. [公式サイト](https://www.mysql.com/jp/)からインストーラーを入手する。<br>
 サイト上部のダウンロードから「MySQL Community Downloads」へとび、
 MySQL Community Serverをダウンロードする。
@@ -133,26 +106,38 @@ MySQL Community Serverをダウンロードする。
 https://agency-star.co.jp/column/mysql<br>
 https://qiita.com/ponsuke0531/items/176a158ea4db3714adda<br>
 
-### mySQLドライバー追加
-プロジェクトにドライバーを追加する。
-1. Visual Studio Codeのエクスプローラーにてpom.xml上で右クリックし、「Add Starters...」を選択する。
-1. MySQL Driverを選択し、Enterを押す。pom.xmlに設定が追加されればOK。
-1. application.propertiesにDBの接続設定を追加する。（データベースが作成してあること）
-
-### データベース作成
+#### データベース作成
 当プロジェクトで使用するデータベースなどの作成方法を記載する。
 1. MySQL Workbenchを起動し、「sample」スキーマを作成する。
-1. テーブルを作成する。
-    ```
-    CREATE TABLE IF NOT EXISTS
-    sample.member                                              -- テーブル名
-    (
-        MAIL_ADDRESS varchar(255) NOT NULL PRIMARY KEY  -- メールアドレス：PK
-        ,NAME varchar(255) NOT NULL                     -- 名前
-        ,CREATED_DATE datetime                          -- 登録日時
-        ,CREATED_USER varchar(255)                      -- 登録者
-        ,UPDATED_DATE datetime                          -- 更新日時
-        ,UPDATED_USER varchar(255)                      -- 更新者
-    );
-    ```
+1. 「sample」スキーマにテーブルを作成する。作成するテーブルについては./doc/データ作成.txt参照。
 1. 任意のデータを登録する。
+
+
+## プロジェクトの作成（参考）
+1. コマンドパレットでSpringを検索、「Spring Initializr: Generate a Maven Project」を選択する。<br>
+※コマンドパレット表示方法<br>
+Windows：Ctrl + Shift + P<br>
+Mac：Command + Shift + P<br>
+または上部メニュー「表示」＞「コマンドパレット」<br>
+※ビルドツールについて<br>
+現場で何を使用しているか不明だが、ひとまずMavenを使用する。<br>
+Gradleの場合は「Spring Initializr: Generate a Maven Project」を選択する。
+1. Spring Bootのバージョンを選択する。
+1. project languageを聞かれたら「Java」を選択する。
+1. パッケージ名を入力し、Enterを押す。
+1. プロジェクト名を入力し、Enterを押す。
+1. パッケージングタイプを選択する。（今回はJARを選択）
+1. Javaのバージョンを選択する。（今回はJDKのバージョンが11のため11を選択）
+1. 依存関係を選択し、Enterを押す。<br>
+（後で変更する場合、Visual Studio Codeのエクスプローラーにてpom.xml上で右クリックし、「Add Starters...」を選択する。）
+1. ディレクトリを選択し、「Generate into this folder」を押す。
+
+### 今回使用している依存関係
+    - Spring Web
+    - Spring Boot DevTools
+    - Thymeleaf
+    - Lombok　←getter,setterを自動生成するプラグイン
+    - MySQL Driver
+    - MyBatis Framework
+    - Spring Data JPA
+    - validation
