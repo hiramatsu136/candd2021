@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.sample.sample.entity.Member;
 import com.sample.sample.form.MemberForm;
+import com.sample.sample.form.MemberUpdForm;
 import com.sample.sample.service.MemberService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,12 +107,84 @@ public class MemberController {
   /**
    * メンバー情報詳細画面表示
    * 
-   * @param mailAdress メールアドレス
-   * @param model      Model
-   * @return メンバー情報詳細画面(dummy)
+   * @param mailAddress path変数 メールアドレス
+   * @param model       Model
+   * @return メンバー情報詳細画面
    */
-  @GetMapping("/member/{mailAdress}")
-  public String displayView(@PathVariable String mailAdress, Model model) {
+  @GetMapping("/member/{mailAddress}")
+  public String displayView(@PathVariable String mailAddress, Model model) {
+    Member member = memberService.searchByMailAddress(mailAddress);
+    MemberUpdForm memberUpdForm = new MemberUpdForm();
+    memberUpdForm.setMailAddress(member.getMail_address());
+    memberUpdForm.setBeforeMailAddress(member.getMail_address());
+    memberUpdForm.setName(member.getName());
+    model.addAttribute("memberUpdForm", memberUpdForm);
     return "member/view";
+  }
+
+  /**
+   * member更新
+   * 
+   * @param memberUpdForm 入力フォーム
+   * @param result        エラーハンドラ
+   * @param model         Model
+   * @return 正常：メンバー情報一覧画面、エラー：メンバー情報詳細画面
+   */
+  @RequestMapping(value = "/member/update", method = RequestMethod.POST)
+  public String update(@Validated @ModelAttribute MemberUpdForm memberUpdForm, BindingResult result, Model model) {
+    List<String> errList = new ArrayList<String>();
+    // 入力チェックエラー確認
+    if (result.hasErrors()) {
+      // エラーの場合
+      for (ObjectError error : result.getAllErrors()) {
+        // エラーメッセージをリストに格納
+        errList.add(error.getDefaultMessage());
+      }
+      // メンバー情報詳細画面へ
+      model.addAttribute("validationError", errList);
+      return "member/view";
+    }
+
+    try {
+      // 更新
+      memberService.updateByMailAddress(memberUpdForm);
+    } catch (DuplicateKeyException e) {
+      // エラーメッセージ格納
+      errList.add("登録済みのメールアドレスです。更新できません。");
+    } catch (Exception e) {
+      // エラーメッセージ格納
+      errList.add(e.getMessage());
+    }
+    if (!errList.isEmpty()) {
+      // メンバー情報詳細画面へ
+      model.addAttribute("validationError", errList);
+      return "member/view";
+    }
+    // 一覧画面へ
+    return "redirect:/member/list";
+  }
+
+  /**
+   * member削除
+   * 
+   * @param mailAddress path変数 メールアドレス
+   * @param model       Model
+   * @return 正常：メンバー情報一覧画面、エラー：メンバー情報詳細画面
+   */
+  @GetMapping("/member/{mailAddress}/delete")
+  public String delete(@PathVariable String mailAddress, Model model) {
+    try {
+      // 削除
+      memberService.deleteByMailAddress(mailAddress);
+    } catch (Exception e) {
+      // エラーメッセージ格納
+      List<String> errList = new ArrayList<String>();
+      errList.add(e.getMessage());
+      model.addAttribute("validationError", errList);
+      // メンバー情報詳細画面へ
+      return "member/view";
+    }
+    // 一覧画面へ
+    return "redirect:/member/list";
   }
 }

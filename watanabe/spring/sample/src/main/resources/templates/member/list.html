@@ -27,7 +27,7 @@
           <td th:text="*{created_user}"></td>
           <td th:text="${#dates.format(member.updated_date, 'yyyy/MM/dd')}"></td>
           <td th:text="*{updated_user}"></td>
-          <td><a th:href="@{/member/{mailAdress}(id=*{mail_address})}" class="btn btn-secondary">詳細</a></td>
+          <td><a th:href="@{/member/{mailAddress}(mailAddress=*{mail_address})}" class="btn btn-secondary">詳細</a></td>
         </tr>
       </tbody>
     </table>

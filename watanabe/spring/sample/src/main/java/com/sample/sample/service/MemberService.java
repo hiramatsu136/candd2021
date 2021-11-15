@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.sample.sample.entity.Member;
 import com.sample.sample.form.MemberForm;
+import com.sample.sample.form.MemberUpdForm;
 import com.sample.sample.mapper.MemberMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,46 @@ public class MemberService {
     }
 
     /**
+     * メールアドレス検索
+     * 
+     * @param mailAddress メールアドレス
+     * @return member
+     */
+    public Member searchByMailAddress(String mailAddress) {
+        return memberMapper.findByKey(mailAddress);
+    }
+
+    /**
+     * member更新
+     * 
+     * @param memberUpdForm member update request情報
+     */
+    public void updateByMailAddress(MemberUpdForm memberUpdForm) {
+        try {
+            Date now = new Date();
+            // 更新
+            memberMapper.update(memberUpdForm.getMailAddress(), memberUpdForm.getName(), now, "system_upd",
+                    memberUpdForm.getBeforeMailAddress());
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    /**
+     * member削除
+     * 
+     * @param mailAddress メールアドレス
+     */
+    public void deleteByMailAddress(String mailAddress) {
+        try {
+            // 削除
+            memberMapper.delete(mailAddress);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    /**
      * 新規登録
      * 
      * @param memberForm member request情報
@@ -47,9 +88,7 @@ public class MemberService {
             member.setUpdated_user("system_upd");
             memberMapper.insert(member);
         } catch (Exception e) {
-            // System.out.println(e.toString());
             throw e;
         }
-
     }
 }
