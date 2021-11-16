@@ -36,10 +36,12 @@ public interface MemberMapper {
     /**
      * アップデート（主キー指定）
      * 
+     * @param mail_address メールアドレス
      * @param name         名前
      * @param updated_date 更新日時
      * @param updated_user 更新者
-     * @param mail_address メールアドレス
+     * @param key          メールアドレス(変更前)
+     * @return 更新件数
      */
     @Update("UPDATE MEMBER SET MAIL_ADDRESS = #{mail_address}, NAME = #{name}, UPDATED_DATE = #{updated_date}, UPDATED_USER = #{updated_user} WHERE MAIL_ADDRESS = #{key}")
     int update(String mail_address, String name, Date updated_date, String updated_user, String key);
