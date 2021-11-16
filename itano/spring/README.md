@@ -34,6 +34,7 @@ VSCodeはインストール済みの想定。<br>
 1. VSCodeを起動し、以下の拡張機能をインストールする。
     - Extension Pack for Java
     - Spring Boot Extension Pack
+    - Lombok Annotations Support for VS Code
 
 ### Oracle
 1. [公式サイト](https://www.oracle.com/jp/database/technologies/xe-downloads.html)より、windows用のものをダウンロードする。
