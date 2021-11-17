@@ -30,16 +30,18 @@ public class MyBatisController {
     /**
      * データ一覧表示画面遷移
      * 
-     * @param model データ一覧のリスト(result)格納用
-     * @return mybatisTest.html エラー発生時...failed.htmlに遷移
+     * データ全件取得処理を行い、データ一覧表示画面に遷移
+     * 
+     * @param model データ一覧のリスト(bookList)格納用
+     * @return bookList.html エラー発生時...failed.htmlに遷移
      */
-    @RequestMapping("/mybatis")
-    public String mybatisTest(Model model) {
+    @RequestMapping("/bookList")
+    public String getBookList(Model model) {
         try {
             // データ全件取得処理
-            List<Book> result = this.bookService.findAll();
-            model.addAttribute("result", result);
-            return "mybatisTest";
+            List<Book> bookList = this.bookService.findAll();
+            model.addAttribute("bookList", bookList);
+            return "bookList";
         } catch (Exception e) {
             // データ全件取得処理にてエラー発生時、コンソールにエラー内容を出力し、failed.htmlに遷移
             System.out.println("----------------");
@@ -51,6 +53,8 @@ public class MyBatisController {
 
     /**
      * データ追加画面遷移
+     * 
+     * データ追加画面に遷移
      * 
      * @param model データ入力フォーマット(bookForm)格納用
      * @return add.html
@@ -65,15 +69,17 @@ public class MyBatisController {
     /**
      * データ追加処理結果画面遷移
      * 
+     * データ追加処理を行い、データ処理結果画面に遷移
+     * 
      * @param bookForm データ入力フォーマット(入力済み)
-     * @return result.html エラー発生時、failed.htmlに遷移
+     * @return success.html エラー発生時、failed.htmlに遷移
      */
-    @PostMapping("/add/result")
+    @PostMapping("/add/execute")
     public String addBook(@ModelAttribute BookForm bookForm) {
         try {
             // データ追加処理
             this.bookService.insertBook(bookForm);
-            return "result";
+            return "success";
         } catch (Exception e) {
             // データ追加処理にてエラー発生時、コンソールにエラー内容を出力し、failed.htmlに遷移
             System.out.println("----------------");
@@ -86,6 +92,8 @@ public class MyBatisController {
     /**
      * データ更新内容入力画面遷移
      * 
+     * 対象のデータ１件取得処理を行い、データ更新画面に遷移
+     * 
      * @param bookId データ更新対象のISBNコード
      * @param model  更新対象のデータの格納用
      * @return bookUpdate.html エラー発生時、failed.htmlに遷移
@@ -94,7 +102,7 @@ public class MyBatisController {
     public String updateBookCheck(@PathVariable String bookId, Model model) {
         try {
             // データ１件取得処理
-            BookForm bookForm = this.bookService.findOneBookForm(bookId);
+            BookForm bookForm = this.bookService.findByBookIdToBookForm(bookId);
             model.addAttribute("bookForm", bookForm);
             return "bookUpdate";
         } catch (Exception e) {
@@ -109,15 +117,17 @@ public class MyBatisController {
     /**
      * データ更新処理結果画面遷移
      * 
+     * データ更新処理を行い、データ処理結果画面に遷移
+     * 
      * @param bookForm データ入力フォーマット(入力済み)
-     * @return result.html エラー発生時、failed.htmlに遷移
+     * @return success.html エラー発生時、failed.htmlに遷移
      */
-    @PostMapping("/update/result")
+    @PostMapping("/update/execute")
     public String updateBook(@ModelAttribute BookForm bookForm) {
         try {
             // データ更新処理
             this.bookService.updateBook(bookForm);
-            return "result";
+            return "success";
         } catch (Exception e) {
             // データ更新処理にてエラー発生時、コンソールにエラー内容を出力し、failed.htmlに遷移
             System.out.println("----------------");
@@ -130,6 +140,8 @@ public class MyBatisController {
     /**
      * データ削除確認画面遷移
      * 
+     * 対象のデータ１件取得処理を行い、データ削除画面に遷移
+     * 
      * @param bookId データ削除対象のISBNコード
      * @param model  削除対象のデータの格納用
      * @return bookDelete.html エラー発生時、failed.htmlに遷移
@@ -138,7 +150,7 @@ public class MyBatisController {
     public String deleteBookCheck(@PathVariable String bookId, Model model) {
         try {
             // データ１件取得処理
-            BookForm bookForm = this.bookService.findOneBookForm(bookId);
+            BookForm bookForm = this.bookService.findByBookIdToBookForm(bookId);
             model.addAttribute("bookForm", bookForm);
             return "bookDelete";
         } catch (Exception e) {
@@ -153,15 +165,17 @@ public class MyBatisController {
     /**
      * データ削除処理結果画面遷移
      * 
+     * データ削除処理を行い、データ処理結果画面に遷移
+     * 
      * @param bookId データ削除対象のISBNコード
-     * @return result.html エラー発生時、failed.htmlに遷移
+     * @return success.html エラー発生時、failed.htmlに遷移
      */
-    @GetMapping("/delete/result/{bookId}")
+    @GetMapping("/delete/execute/{bookId}")
     public String deleteBook(@PathVariable String bookId) {
         try {
             // データ削除処理
             this.bookService.deleteBook(bookId);
-            return "result";
+            return "success";
         } catch (Exception e) {
             // データ削除処理にてにてエラー発生時、コンソールにエラー内容を出力し、failed.htmlに遷移
             System.out.println("----------------");

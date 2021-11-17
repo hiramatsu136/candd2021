@@ -49,13 +49,13 @@ public class BookRepository {
     }
 
     /**
-     * １件取得処理
+     * １件取得処理(主キー"book_id"を用いた検索)
      * 
      * @param bookId 取得対象のISBNコード
      * @return 取得したBook型データ
      * @throws Exception InputStream生成失敗 または SELECT処理失敗
      */
-    public Book findOne(Long bookId) throws Exception {
+    public Book findByBookId(Long bookId) throws Exception {
         Book book;
         // ルートとなる設定ファイルを読み込む
         try (InputStream in = BookRepository.class.getResourceAsStream(configXml)) {

@@ -1,18 +1,33 @@
 MyBatisController
 ・メソッド名ですが、mybatisTestは機能が分かる名前にしてください。（お試しの修正漏れだと思いますが）
+→お試しの修正漏れになります。メソッド名をmybatisTestからgetBookListに修正しました。
+    水平展開として、お試しの際から変更していなかった名称を修正しました。
+        @RequestMapping("/mybatis") →   @RequestMapping("/bookList")
+        mybatisTest.html            →   bookList.html
+        model.addAttributeに使用していた"result"を"bookList"に変更
 
 ・パスと処理内容について
 　メソッド名関連で気になったのですが、例えば「/add/result」では「データ追加処理結果画面遷移」とありますが、
 　単純に処理結果に遷移するのではなく追加処理が実行される認識です。
 　メソッド名はあってると思いますが、パスはresultよりexecute等の方が分かりやすいのではないかと思います。
+→認識頂いている通りとなります。
+    以下を修正しました。
+        result.html →   success.html
+        MyBatisControllerの各メソッドのjavadocに処理のコメントを追加
+        MappingのURLに使用していた"result"を"execute"に変更
 
 ・javaでlog周り学習することになったら、
 　System.out.printlnで出力している箇所について、ログ出力に変更すると良いと思います。
+→ログの出力については今回は考慮していませんでしたが、また後日に検討してみようかと思います。
 
 BookRepository
 ・findOne
 　今回は良いですが、select文が大量にあるようなソースになるとこの命名はあまりよろしくないです。
 　主キー検索であればfindByKeyなど。何をキーに検索しているのかわかる命名が良いです。
+→命名時に検討不足でした。以下の通りに修正しました。
+    findOne →   findByBookId
+また、合わせてBookService.javaのメソッド名も修正しました。
+    findOneBookForm →   findByBookIdToBookForm
 
 mybatis-config,sample-configについて
 ・バージョンが違うので参考程度ですが、公式サイトによるとファイルパス指定やパッケージ指定可能らしいです。
@@ -20,3 +35,9 @@ mybatis-config,sample-configについて
 　また、DBのドライバーやユーザーなどの設定も変数で動的に指定可能なようです。
 　（次の現場でMyBatis使用しないとのことなので、参考まで。）
     https://mybatis.org/mybatis-3/ja/configuration.html
+→mybatisの動作設定については、xmlを使用しない方法やアノテーションによるマッピングなど数多くの設定手段があり、
+その内の1つを用いてみた形になります。
+ですが、
+>DBのドライバーやユーザーなどの設定も変数で動的に指定可能なようです。
+こちらについては見落としておりました。
+より良い設計ができるよう、今後の参考にさせていただきます。

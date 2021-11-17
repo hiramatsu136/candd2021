@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr th:each="book : ${result}" th:object="${book}" class="align-middle">
+      <tr th:each="book : ${bookList}" th:object="${book}" class="align-middle">
         <td th:text="*{book_id}"></td>
         <td th:text="${#dates.format(book.release_date, 'yyyy/MM/dd')}"></td>
         <td th:text="*{title}"></td>
