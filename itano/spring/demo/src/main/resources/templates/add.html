@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!-- データ追加画面 -->
+
 <head>
   <meta charset="UTF-8">
   <title>新規登録</title>
@@ -8,6 +10,8 @@
 
 <body>
   <h1>新規登録画面</h1>
+
+  <!-- 追加データ入力欄 -->
   <form th:action="@{/add/result}" th:object="${bookForm}" th:method="post">
     <div class="form-group">
       <label>ISBNコード：<span class="text-danger">※</span></label>
@@ -33,12 +37,18 @@
       <label>在庫数：<span class="text-danger">※</span></label>
       <input type="text" th:field="*{stock}" class="form-control">
     </div>
+
     <br />
+
+    <!-- 「登録」ボタン押下時、データ追加処理を行い、処理結果画面(result.html / failed.html)に遷移
+    「キャンセル」ボタン押下時、ホームに遷移 -->
     <div class="text-center">
       <button type="submit">登録</button>
       <button type="submit" formaction="/">キャンセル</button>
     </div>
+
   </form>
+
 </body>
 
 </html>

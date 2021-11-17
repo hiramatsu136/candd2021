@@ -2,7 +2,12 @@
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- MyBatisの動作をカスタマイズするため設定ファイル -->
+
 <configuration>
+  <!-- environments:環境設定
+  接続先の環境設定を定義する -->
   <environments default="sample_id">
     <environment id="sample_id">
       <transactionManager type="JDBC"/>
@@ -14,6 +19,8 @@
       </dataSource>
     </environment>
   </environments>
+  <!-- mappers:マッピング
+  SQL文を定義しているマッピングファイルのパスを指定する -->
   <mappers>
     <mapper resource="sample-config.xml"/>
   </mappers>

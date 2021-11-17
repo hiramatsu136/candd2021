@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!-- データ一覧表示画面 -->
+
 <head>
   <meta charset="UTF-8">
   <title>全件表示</title>
@@ -9,6 +11,9 @@
 <body>
   <h1>全件表示</h1>
 
+  <!-- データ表示欄 -->
+  <!-- 各データ列の「更新」ボタン押下時、データ更新画面に遷移
+  各データ列の「削除」ボタン押下時、データ削除画面に遷移 -->
   <table class="table table-striped">
     <thead>
       <tr>
@@ -35,7 +40,10 @@
       </tr>
     </tbody>
   </table>
+
   <br />
+
+  <!-- ホーム画面へのリンク -->
   <a href="/" class="btn btn-secondary">ホーム</a>
 </body>
 

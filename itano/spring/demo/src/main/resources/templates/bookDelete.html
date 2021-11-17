@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!-- データ削除画面 -->
+
 <head>
     <meta charset="UTF-8">
-    <title>全件表示</title>
+    <title>削除</title>
 </head>
 
 <body>
-    <h1>全件表示</h1>
+    <h1>削除画面</h1>
 
+    <!-- 削除対象のデータ表示欄 -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -31,9 +34,13 @@
             </tr>
         </tbody>
     </table>
+
+    <!-- 「はい」ボタン押下時、データ削除処理を行い、処理結果画面(result.html / failed.html)に遷移
+    「いいえ」ボタン押下時、データ一覧表示画面に遷移 -->
     <p>削除を行いますか？</p>
     <span><a th:href="@{/delete/result/{bookId}(bookId=${bookForm.book_id})}" class="btn btn-secondary">はい</a></span>
     <span><a href="/mybatis" class="btn btn-secondary">いいえ</a></span>
+
 </body>
 
 </html>

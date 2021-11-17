@@ -2,17 +2,27 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MyBatisで使用するSQLマップファイル -->
+
 <mapper namespace="sample.mybatis">
+    <!-- 全件取得 -->
     <select id="selectTest" resultType="com.example.demo.entity.Book">
         select * from book_table order by book_id
     </select>
+
+    <!-- １件取得 -->
     <select id="selectOne" parameterType="long" resultType="com.example.demo.entity.Book">
         select * from book_table where book_id = #{book_id}
     </select>
+
+    <!-- データ追加 -->
     <insert id="insertBook" parameterType="com.example.demo.entity.Book">
         insert into book_table (book_id,release_date,title,author,price,stock)
         values (#{book_id},#{release_date},#{title},#{author},#{price},#{stock})
     </insert>
+
+    <!-- データ更新 -->
     <update id ="updateBook" parameterType="com.example.demo.entity.Book">
         update book_table
         set
@@ -24,6 +34,8 @@
         where
             book_id = #{book_id}
     </update>
+    
+    <!-- データ削除 -->
     <delete id="deleteBook" parameterType="long">
         delete from book_table where book_id = #{book_id}
     </delete>
