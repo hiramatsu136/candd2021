@@ -35,11 +35,11 @@
         </tbody>
     </table>
 
-    <!-- 「はい」ボタン押下時、データ削除処理を行い、処理結果画面(result.html / failed.html)に遷移
+    <!-- 「はい」ボタン押下時、データ削除処理を行い、処理結果画面(success.html / failed.html)に遷移
     「いいえ」ボタン押下時、データ一覧表示画面に遷移 -->
     <p>削除を行いますか？</p>
-    <span><a th:href="@{/delete/result/{bookId}(bookId=${bookForm.book_id})}" class="btn btn-secondary">はい</a></span>
-    <span><a href="/mybatis" class="btn btn-secondary">いいえ</a></span>
+    <span><a th:href="@{/delete/execute/{bookId}(bookId=${bookForm.book_id})}" class="btn btn-secondary">はい</a></span>
+    <span><a href="/bookList" class="btn btn-secondary">いいえ</a></span>
 
 </body>
 

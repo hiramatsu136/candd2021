@@ -33,16 +33,16 @@ public class BookService {
     }
 
     /**
-     * データを１件取得し、BookForm型に整形する処理
+     * ISBNコードを元にデータを１件取得し、BookForm型に整形する処理
      * 
      * @param bookId 対象のデータのISBNコード
      * @return 対象のBookデータをBookFormに整形したデータ
-     * @throws Exception repository.findOneにて発生したエラー または
+     * @throws Exception repository.findByBookIdにて発生したエラー または
      *                   Book型をBookForm型に整形する際に発生したエラー
      */
-    public BookForm findOneBookForm(String bookId) throws Exception {
+    public BookForm findByBookIdToBookForm(String bookId) throws Exception {
         // 対象のBook型データ取得
-        Book book = this.repository.findOne(Long.parseLong(bookId));
+        Book book = this.repository.findByBookId(Long.parseLong(bookId));
         // 取得したBook型データをBookForm型に整形
         BookForm bookForm = new BookForm();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
