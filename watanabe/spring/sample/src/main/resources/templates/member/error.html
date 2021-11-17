@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head :: head_fragment(title = 'エラーページ', scripts = ~{::script}, links = ~{::link})"></head>
+<body>
+  <div class="container">
+      <h1>予期せぬエラーが発生しました</h1>
+      <div th:if="${errorList}" th:each="error : ${errorList}">
+        <label class="text-danger" th:text="${error}"></label>
+      </div>
+      <div>
+        <a th:href="@{/member/list}" class="btn btn-secondary">メンバー情報一覧へ</a>
+      </div>
+  </div>
+</body>
+</html>

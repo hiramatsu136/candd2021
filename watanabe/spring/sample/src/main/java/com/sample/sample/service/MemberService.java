@@ -83,7 +83,7 @@ public class MemberService {
             member.setMail_address(memberForm.getMailAddress());
             member.setName(memberForm.getName());
             member.setCreated_date(now);
-            member.setCreated_user("sysmtem_ins");
+            member.setCreated_user("system_ins");
             member.setUpdated_date(now);
             member.setUpdated_user("system_upd");
             memberMapper.insert(member);

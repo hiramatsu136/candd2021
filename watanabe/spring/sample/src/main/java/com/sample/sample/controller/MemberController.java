@@ -180,9 +180,9 @@ public class MemberController {
       // エラーメッセージ格納
       List<String> errList = new ArrayList<String>();
       errList.add(e.getMessage());
-      model.addAttribute("validationError", errList);
+      model.addAttribute("errorList", errList);
       // メンバー情報詳細画面へ
-      return "member/view";
+      return "member/error";
     }
     // 一覧画面へ
     return "redirect:/member/list";
