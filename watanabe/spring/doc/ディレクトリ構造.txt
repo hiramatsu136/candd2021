@@ -1,4 +1,5 @@
 watanabe
+    ├─AngularSample                                 # Angularフレームワークサンプル
     ├─lifegame                                      # ライフゲームのプロジェクト
     ├─README.md                                     # ライフゲームのREADME
     ├─クロスチェック                                 # クロスチェック時のコメント
