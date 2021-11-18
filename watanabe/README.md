@@ -58,7 +58,7 @@
 1. Node.js(npm)のインストール（vue-cliを使用するために必要）
     1. [公式サイト](https://nodejs.org/ja/)からインストーラーをダウンロードする。<br>
     (v12.14.1で開発。過去のバージョンのインストーラーは公式サイト内で入手可能)
-    1. インストーラーを起動し、インストールする。（Automatically install the necessary tools.・・・」のチェックは外す）
+    1. インストーラーを起動し、インストールする。（「Automatically install the necessary tools.・・・」のチェックは外す）
     1. コマンドプロンプトを起動し、バージョンを確認する。
         ```
         Node.jsのバージョン確認コマンド
