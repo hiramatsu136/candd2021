@@ -41,7 +41,7 @@ public class BookRepository {
             // SqlSessionFactory から SqlSession を生成する
             try (SqlSession session = factory.openSession()) {
                 // SqlSession を使って select(全件) を実行する
-                bookList = session.selectList("sample.mybatis.selectTest");
+                bookList = session.selectList("mybatis.booksql.selectList");
                 session.close();
             }
         }
@@ -65,7 +65,7 @@ public class BookRepository {
             // SqlSessionFactory から SqlSession を生成する
             try (SqlSession session = factory.openSession()) {
                 // SqlSession を使って select(1件) を実行する
-                book = session.selectOne("sample.mybatis.selectOne", bookId);
+                book = session.selectOne("mybatis.booksql.selectOne", bookId);
                 session.close();
             }
         }
@@ -87,7 +87,7 @@ public class BookRepository {
             // SqlSessionFactory から SqlSession を生成する
             try (SqlSession session = factory.openSession()) {
                 // SqlSession を使って insert を実行する
-                session.insert("sample.mybatis.insertBook", book);
+                session.insert("mybatis.booksql.insertBook", book);
                 session.commit();
             }
         }
@@ -108,7 +108,7 @@ public class BookRepository {
             // SqlSessionFactory から SqlSession を生成する
             try (SqlSession session = factory.openSession()) {
                 // SqlSession を使って insert を実行する
-                session.update("sample.mybatis.updateBook", book);
+                session.update("mybatis.booksql.updateBook", book);
                 session.commit();
             }
         }
@@ -129,7 +129,7 @@ public class BookRepository {
             // SqlSessionFactory から SqlSession を生成する
             try (SqlSession session = factory.openSession()) {
                 // SqlSession を使って delete を実行する
-                session.delete("sample.mybatis.deleteBook", bookId);
+                session.delete("mybatis.booksql.deleteBook", bookId);
                 session.commit();
             }
         }

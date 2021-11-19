@@ -5,9 +5,9 @@
 
 <!-- MyBatisで使用するSQLマップファイル -->
 
-<mapper namespace="sample.mybatis">
+<mapper namespace="mybatis.booksql">
     <!-- 全件取得 -->
-    <select id="selectTest" resultType="com.example.demo.entity.Book">
+    <select id="selectList" resultType="com.example.demo.entity.Book">
         select * from book_table order by book_id
     </select>
 

@@ -22,6 +22,7 @@
   <!-- mappers:マッピング
   SQL文を定義しているマッピングファイルのパスを指定する -->
   <mappers>
-    <mapper resource="sample-config.xml"/>
+    <mapper resource="book-config.xml"/>
+    <mapper resource="prefSymbol-config.xml"/>
   </mappers>
 </configuration>

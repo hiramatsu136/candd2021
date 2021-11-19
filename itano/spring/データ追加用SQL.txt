@@ -8,6 +8,17 @@
         author          著者
         price           値段
         stock           在庫数
+    テーブル名：prefcode_table
+    各カラム詳細：
+        code         都道府県コード（主キー）
+        pref         都道府県名
+    テーブル名：pref_symbol_table
+    各カラム詳細：
+        id           主キー用ID
+        code         都道府県コード
+        pref_symbol  県のシンボル名
+        class        分類
+
 SQL：
     CREATE TABLE book_table (
     book_id NUMBER(13) PRIMARY KEY,
@@ -18,11 +29,40 @@ SQL：
     stock NUMBER(5)
     );
 
+    CREATE TABLE prefcode_table (
+    code NUMBER(2),
+    pref VARCHAR2(12),
+    constraint pk1 primary key(code)
+    );
+
+    CREATE TABLE pref_symbol_table (
+    id   NUMBER(4),
+    code NUMBER(2),
+    pref_symbol VARCHAR2(50),
+    class varchar2(20),
+    constraint symbolpk primary key(id)
+    );
+
 ・データ追加
 SQL：
     INSERT INTO book_table (book_id, release_date, title, author, price, stock) 
     VALUES (0, TO_DATE('2021/11/12'), 'テストタイトル', 'テスト著者', 1000, 5);
 
+    @prefcodeTableInsert.sql
+
+    @prefSymbolTableInsert.sql
+
+    ※上記の「@xxxx.sql」は、sqlファイルを用いたSQL実行を行っている。
+    sqlファイルによるSQL実行の際は、対象のsqlファイルが格納されている場所からログインをする必要があるため、
+    実行できなかった際には一度ログアウトして現在のターミナルの場所を確認すること。
+
 ・データの確認
 SQL：
     SELECT * FROM book_table;
+        →追加したデータが表示されればOK
+
+    SELECT COUNT(*) FROM prefcode_table;
+        →47が表示されればOK
+
+    SELECT COUNT(*) FROM pref_symbol_table;
+        →148が表示されればOK

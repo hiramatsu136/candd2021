@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- prefcode_table及びpref_symbol_tableを扱うSQLマップファイル -->
+
+<mapper namespace="mybatis.prefSymbolsql">
+    <!-- 全件取得 -->
+    <select id="selectAllSymbol" resultMap="symbolResult">
+        select
+            pst.id as id,
+            pst.code as prefCode,
+            pct.pref as prefName,
+            pst.pref_symbol as prefSymbol,
+            pst.class as symbolClass
+        from
+            pref_symbol_table pst
+        inner join 
+            prefcode_table pct
+        on 
+            pst.code = pct.code
+    </select>
+
+    <!-- PrefSymbolデータ取得時の結果をどのようにマッピングするか指定 -->
+    <resultMap type="com.example.demo.entity.PrefSymbol" id="symbolResult">
+        <id column="id" property="id"/>
+        <result column="prefCode" property="prefCode"/>
+        <result column="symbolClass" property="symbolClass"/>
+        <result column="prefSymbol" property="prefSymbol"/>
+        <association property="prefData" resultMap="prefNameResult"/>
+    </resultMap>
+    <resultMap type="com.example.demo.entity.PrefData" id="prefNameResult">
+        <result column="prefName" property="prefName"/>
+    </resultMap>
+</mapper>

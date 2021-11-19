@@ -62,16 +62,22 @@ VSCodeはインストール済みの想定。<br>
     grant resource to testuser;
     grant dba to testuser;
     ```
-1. sysユーザからログアウトし、作成したtestuserでPDBにログインする。
+1. sysユーザからログアウトする。
     ```
     ログアウト：
     exit
+    ```
 
+1. 作成したtestuserでPDBにログインし、テーブルの作成・追加を行う。
+    ```
+    itano/spring/oracle_work配下に移動：
+    cd (チェックアウトしたソースの場所)itano/spring/oracle_work
+    
     testuserでログイン：
     sqlplus testuser/(任意のパスワード)@//localhost:1521/XEPDB1
+
+    ログイン後は、「データ追加用SQL.txt」を参照し、記載されているSQLをそれぞれ実行する。
     ```
-1. テーブルを作成し、データの追加を行う。
-    「データ追加用SQL.txt」を参照し、記載されているSQLをそれぞれ実行する。
 
 ## デモプログラム実行方法
 デモプログラムは、作成したDBデータの参照及び追加を行うWebアプリケーションとなっている。
