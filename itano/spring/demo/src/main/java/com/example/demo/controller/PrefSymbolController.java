@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 
 import com.example.demo.service.PrefSymbolService;
@@ -16,6 +18,7 @@ import com.example.demo.entity.PrefSymbol;
  * 画面遷移操作クラス
  */
 @Controller
+@Slf4j
 public class PrefSymbolController {
     /** PrefSymbolService.javaとの紐づけ */
     @Autowired
@@ -32,15 +35,20 @@ public class PrefSymbolController {
     @RequestMapping("/prefSymbolList")
     public String getPrefSymbolList(Model model) {
         try {
+            // DBデータ取得処理開始宣言
+            log.info("{} starting", "prefSymbolService.selectAll");
+
             // データ全件取得処理
             List<PrefSymbol> prefSymbolList = this.prefSymbolService.selectAll();
+
+            // DBデータ取得処理終了宣言
+            log.info("{} finished", "prefSymbolService.selectAll");
+
             model.addAttribute("prefSymbolList", prefSymbolList);
             return "prefSymbolList";
         } catch (Exception e) {
-            // データ全件取得処理にてエラー発生時、コンソールにエラー内容を出力し、failed.htmlに遷移
-            System.out.println("----------------");
-            System.out.println(e);
-            System.out.println("----------------");
+            // データ全件取得処理にてエラー発生時、エラー内容をログファイルに出力し、failed.htmlに遷移
+            log.error(e.getMessage());
             return "failed";
         }
     }

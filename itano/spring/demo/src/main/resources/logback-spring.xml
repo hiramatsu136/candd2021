@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- logファイルの出力先指定 -->
+    <property name="logPath" value="itano/spring/"/>
+
+    <!-- コンソール出力 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- アプリケーションログのファイル書き出し -->
+    <appender name="APPLIATION_LOG" class="ch.qos.logback.core.FileAppender">
+        <!--ファイル名 -->
+        <file>${logPath}logbackSample.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss} %-5level [%thread] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- "com.example.demo.controller"のログレベルと使用出力ルール -->
+    <logger name="com.example.demo.controller" level="INFO">
+        <appender-ref ref="APPLIATION_LOG" />
+    </logger>
+
+    <!--rootログレベルと使用出力ルール -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
