@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- データ一覧表示画面 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>全件表示</title>
+</head>
+
+<body>
+    <h1>県のシンボル一覧表示</h1>
+
+    <!-- データ表示欄 -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>都道府県名</th>
+                <th>名称</th>
+                <th>分類</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="Symbol : ${prefSymbolList}" th:object="${Symbol}" class="align-middle">
+                <td th:text="*{prefData.prefName}"></td>
+                <td th:text="*{prefSymbol}"></td>
+                <td th:text="*{symbolClass}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+
+    <!-- ホーム画面へのリンク -->
+    <a href="/" class="btn btn-secondary">ホーム</a>
+</body>
+
+</html>
