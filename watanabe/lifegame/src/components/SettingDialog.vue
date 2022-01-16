@@ -13,7 +13,7 @@
                 v-bind:class="cellColler(cell)"
                 @mousedown.left="setCell(i, j, live, $event)"
                 @mousedown.right="setCell(i, j, death, $event)"
-                @contextmenu.prevent="false"
+                v-on:contextmenu.prevent
               ></td>
             </tr>
           </tbody>
