@@ -1,7 +1,9 @@
 package process
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"regexp"
 )
 
@@ -88,9 +90,9 @@ func intCheck(inputData string) bool {
 	return false
 }
 
-// テスト用に標準入力を関数化
+// 標準入力
 func stdin() string {
-	var inputData string
-	fmt.Scan(&inputData)
-	return inputData
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	return scanner.Text()
 }
